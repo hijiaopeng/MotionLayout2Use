@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <!--运动的基本定义
+        motion:constraintSetStart 和 motion:constraintSetEnd：运动的端点。
+        这些端点在 MotionScene 后面的 <ConstraintSet> 元素中定义。
+        motion:duration：完成运动所需的毫秒数。
+    -->
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="500">
+
+        <!--轻触控制运动
+            motion:touchAnchorId：可以滑动并拖动的视图。
+            motion:touchAnchorSide：表示我们从右侧拖动视图。
+            motion:dragDirection：拖动的进度方向。例如，motion:dragDirection="dragRight" 表示当您向右拖动时，进度会增加。
+        -->
+<!--        <OnSwipe-->
+<!--            motion:dragDirection="dragRight"-->
+<!--            motion:touchAnchorId="@+id/button"-->
+<!--            motion:touchAnchorSide="right" />-->
+
+    </Transition>
+
+    <!--定义描述运动的各种限制条件的位置。-->
+    <ConstraintSet android:id="@+id/start">
+
+        <!--android:id：需要和布局文件中MotionLayout里面子组件的id一致，一一对应。-->
+        <Constraint
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <!--自定义属性，为不仅仅与位置相关的属性或 View 属性指定转换。
+            这个标签也可以用在Constraint标签里面
+            motion:attributeName：是必需属性，并且必须与具有 getter 和 setter 方法的对象匹配。getter 和 setter 与特定模式非常匹配。
+            此外，您必须提供的另一个属性基于值类型。从以下支持的类型中选择：
+            motion:customColorValue 适用于颜色
+            motion:customIntegerValue 适用于整数
+            motion:customFloatValue 适用于浮点值
+            motion:customStringValue 适用于字符串
+            motion:customDimension 适用于尺寸
+            motion:customBoolean 适用于布尔值
+            注意，在指定自定义属性时，您必须定义开始和结束 <ConstraintSet> 元素中的端点值。
+        -->
+        <CustomAttribute
+            motion:attributeName="backgroundColor"
+            motion:customColorValue="#D81B60" />
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+    </ConstraintSet>
+
+</MotionScene>
